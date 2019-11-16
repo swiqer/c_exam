@@ -14,35 +14,27 @@
 #include <stdio.h>
 #include <unistd.h>
 
-char    *ft_strdup(char *src)
+char	*ft_strdup(char *src)
 {
-    char    *s;
-    int     len;
-    int     i;
-    
-    i = 0;
-    len = 0;
-    while(src[len] != '\0')
-        len++;
-    if(!(s = (char *)malloc(sizeof(char) * (len + 1))))
-    
-        return NULL;
-    while(src[i] <= len)
-    {    
-        s[i] = src[i];
-        i++;
-    }
-    s[i] = '\0';
-    return s;    
+	int len;
+	char *dest;
+	int i;
+
+	i = 0;
+	len = 0;
+	while (src[len] != '\0')
+		len++;
+	dest = (char *)malloc(sizeof(*dest) * (len + 1));
+	while (i < len)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+    dest[i] = '\0';
+	return (dest);
 }
 
-int main(void)
-{   
-    char *newstr;
-    char str[20] = "Kirill Kuzmin";
-    newstr = ft_strdup(str);
-    while(newstr[1] != '\0')
-        write(1,newstr++,1);
-    write(1,"\n",1);
-    return 0;
+int main(void) {
+  printf("%s", ft_strdup("Kirill Kuzmin"));
+  return 0;
 }
