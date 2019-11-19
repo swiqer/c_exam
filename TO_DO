@@ -3,4 +3,4 @@
 02 inter выучить/распечатать 
 02 reverse_bits.c, swap_bits.c, print_bits.c
 
-03 print_hex.c
+03 print_hex.c, ft_atoi_base.c
