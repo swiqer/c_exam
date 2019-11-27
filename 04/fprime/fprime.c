@@ -1,26 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void    ft_fprime(int n)
+void    ft_fprime(int num)
 {
-    unsigned int dec;
+    int i;
 
-    if(n == 1)
+    i = 2;
+
+    if(num == 1)
         printf("1");
     else 
     {
-        dec = 2;
-        while(n > 1)
+        while(num > 1)
         {
-            if(n % dec == 0)
-            {
-                printf("%d", dec);
-                n = n / dec;
-                if(n > 1)
+            if(num % i == 0)
+            {    
+                printf("%d", i);
+                num = num / i;
+                if(num > 1)
                     printf("*");
-                dec--;
+                i--;
             }
-            dec++;
+            i++;
         }
     }
 }
