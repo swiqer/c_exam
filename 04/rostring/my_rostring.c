@@ -1,46 +1,56 @@
 #include <unistd.h>
-
-int is_blank(char c)
-{
-    return(c == ' ' || c == '\t');
-}
+#include <stdio.h>
 
 void    ft_rostring(char *str)
 {
     int i;
-    int next;
+    int save;
+    int len;
 
+    len = 0;
+    while(str[len])
+        len++;
+    len--;
+    while(str[len] && (str[len] == ' ' || (str[len] >= 9 && str[len] <= 13)))
+        len--;
     i = 0;
-    next = 0;
-    while(is_blank(str[i]) && str[i])
+    while(str[i] && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
         i++;
-    next = i;
-    while((str[next] != ' ' && str[next] != '\t' ) && str[next])
-        next++;
-    while(str[next])
+    save = i;
+    while(str[i] && (str[i] != ' ' && (!(str[i] >= 9 && str[i] <= 13))))
+        i++;
+    while(str[i])
     {
-        while(is_blank(str[next]) && str[next])
-            next++;
-        while((str[next] != ' ' && str[next] != '\t') && str[next])
+        while(str[i] && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
+            i++;
+        while(str[i] && (str[i] != ' ' && (!(str[i] >= 9 && str[i] <= 13))))
         {
-            write(1, &str[next], 1);
-            next++;
+            write(1, &str[i], 1);
+            i++;
         }
-        write(1, " ", 1);    
+        //if(i < len)
+        write(1, " ", 1);
     }
-    while(!(is_blank(str[i])) && str[i])
+    //write(1, " ", 1);
+    while(str[save] && (str[save] != ' ' && (!(str[save] >= 9 && str[save] <= 13))))
     {
-        write(1,&str[i],1);
-        i++;
+        write(1, &str[save], 1);
+        save++;
     }
 }
 
 int main(int ac, char **av)
-{
-    if(ac == 2)
-    {
-        ft_rostring(av[1]);
+{   
+    if(ac > 1)
+    {   
+        while(av[1])
+        {
+            ft_rostring(av[1]);
+            write(1, "\n", 1);
+            av++;
+        }
     }
-    write(1,"\n",1);
+    else
+        write(1, "\n", 2);
     return 0;
 }

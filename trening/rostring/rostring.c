@@ -40,11 +40,17 @@ void    ft_rostring(char *str)
 }
 
 int main(int ac, char **av)
-{
-    if(ac == 2)
-    {
-        ft_rostring(av[1]);
+{   
+    if(ac > 1)
+    {   
+        while(av[1])
+        {
+            ft_rostring(av[1]);
+            write(1, "\n", 1);
+            av++;
+        }
     }
-    write(1, "\n", 2);
+    else
+        write(1, "\n", 2);
     return 0;
 }
